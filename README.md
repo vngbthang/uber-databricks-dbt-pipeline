@@ -30,7 +30,7 @@ Project này xây dựng một **Data Lakehouse hoàn chỉnh** theo kiến trú
 
 | Component | Technology |
 |-----------|-----------|
-| **Nền tảng** | Databricks (Community Edition / Trial) |
+| **Nền tảng** | Databricks (Free Edition) |
 | **Data Lake** | Delta Lake |
 | **Storage** | Databricks Volumes (Unity Catalog) |
 | **Ingestion (Bronze)** | PySpark Streaming với `trigger(once=True)` |
@@ -95,7 +95,7 @@ pysparkdbt (catalog)
 ## 🚀 Cách thiết lập và chạy (Setup & Run)
 
 ### Prerequisites:
-- Databricks workspace (Community Edition hoặc Trial)
+- Databricks workspace (Free Edition)
 - Python 3.8+
 - dbt-databricks package
 
@@ -103,7 +103,7 @@ pysparkdbt (catalog)
 ```bash
 # Khởi tạo cluster với:
 - Runtime: DBR 13.3 LTS hoặc mới hơn
-- Node type: Standard (phù hợp với community edition)
+- Node type: Standard
 - Enable Unity Catalog
 ```
 
