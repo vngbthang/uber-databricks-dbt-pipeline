@@ -18,7 +18,7 @@ Project này xây dựng một **Data Lakehouse hoàn chỉnh** theo kiến trú
 
 <div align="center">
   <img src="docs/images/architecture.png" alt="Architecture" width="800"/>
-  <p><i>Kiến trúc Medallion: Bronze → Silver → Gold.</i></p>
+  <p><i>Kiến trúc Medallion: Bronze → Silver → Gold</i></p>
 </div>
 
 ### Luồng dữ liệu chi tiết:
