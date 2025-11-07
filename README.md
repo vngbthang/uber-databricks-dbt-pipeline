@@ -14,27 +14,12 @@ Project này xây dựng một **Data Lakehouse hoàn chỉnh** theo kiến trú
 
 ## 🏗️ Kiến trúc (Architecture)
 
-```
-┌─────────────┐      ┌──────────────┐      ┌──────────────┐      ┌──────────────┐
-│   Source    │      │    Bronze    │      │    Silver    │      │     Gold     │
-│  (Volumes)  │─────▶│ (Delta Lake) │─────▶│ (Delta Lake) │─────▶│ (Delta Lake) │
-│             │      │              │      │              │      │              │
-│ CSV Files:  │      │ Raw ingested │      │ Cleaned +    │      │ Fact Tables  │
-│ - customers │      │ data with    │      │ Deduplicated │      │ - FactTrips  │
-│ - trips     │      │ full history │      │ + Upserted   │      │              │
-│ - locations │      │              │      │              │      │ Dim Tables   │
-│ - payments  │      │              │      │              │      │ (SCD Type 2) │
-│ - vehicles  │      │              │      │              │      │ - DimCustomers│
-│ - drivers   │      │              │      │              │      │ - DimDrivers  │
-└─────────────┘      └──────────────┘      └──────────────┘      │ - DimVehicles │
-                              │                      │            │ - DimLocations│
-                              │                      │            │ - DimPayments │
-                              ▼                      ▼            └──────────────┘
-                        PySpark Streaming      PySpark + MERGE           │
-                        (trigger once)         (Upsert logic)            ▼
-                                                                    dbt snapshots
-                                                                  + incremental models
-```
+![Architecture Diagram](docs/images/architecture.png)
+
+<div align="center">
+  <img src="docs/images/architecture.png" alt="Architecture" width="800"/>
+  <p><i>Kiến trúc Medallion: Bronze → Silver → Gold.</i></p>
+</div>
 
 ### Luồng dữ liệu chi tiết:
 1. **Bronze Layer**: PySpark Streaming đọc CSV từ Volumes → Append vào Delta Tables
